@@ -17,8 +17,13 @@ func genDelete(table Table, withCache, postgreSql bool) (string, string, error) 
 	keySet.AddStr(table.PrimaryCacheKey.KeyExpression)
 	keyVariableSet.AddStr(table.PrimaryCacheKey.KeyLeft)
 	for _, key := range table.UniqueCacheKey {
-		keySet.AddStr(key.DataKeyExpression)
 		keyVariableSet.AddStr(key.KeyLeft)
+		// keySet.AddStr(key.DataKeyExpression)
+		if key.Fields[0].Name.Source() == "id" {
+			keySet.AddStr(key.DataKeyExpression)
+		} else {
+			keySet.AddStr(key.KeyLeft + " := " + key.VarLeft + " + \"*\"")
+		}
 	}
 	keys := keySet.KeysStr()
 	sort.Strings(keys)
