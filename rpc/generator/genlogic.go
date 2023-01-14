@@ -151,6 +151,13 @@ func (g *Generator) genLogicFunction(serviceName, goPackage, logicName string,
 		"streamBody":   streamServer,
 		"hasComment":   len(comment) > 0,
 		"comment":      comment,
+		"isAddFunc":    strings.Contains(logicName, "Add"),
+		"isUpdateFunc": strings.Contains(logicName, "Update"),
+		"isDelFunc":    strings.Contains(logicName, "Del"),
+		"isGetOneFunc": strings.Contains(logicName, "Get"),
+		"isSearchFunc": strings.Contains(logicName, "Search"),
+		"isClearFunc":  strings.Contains(logicName, "Clear"),
+		"isCountFunc":  strings.Contains(logicName, "Count"),
 	})
 	if err != nil {
 		return "", err
