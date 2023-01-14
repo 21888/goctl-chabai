@@ -158,6 +158,7 @@ func (g *Generator) genLogicFunction(serviceName, goPackage, logicName string,
 		"isSearchFunc": strings.Contains(logicName, "Search"),
 		"isClearFunc":  strings.Contains(logicName, "Clear"),
 		"isCountFunc":  strings.Contains(logicName, "Count"),
+		"isSetFunc":    strings.Contains(logicName, "Set"),
 	})
 	if err != nil {
 		return "", err
